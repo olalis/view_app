@@ -1,33 +1,22 @@
 <template>
   <div>
-    <!---<h1>Clicked {{ title }} times</h1>
-    <button @click="iAmClicked()">More</button>
-    <button @click="startover()">Start over</button>--->
-
-    <h1>{{happy ? 'Happy :)' : 'Sad :('}}</h1>
-    <button @click="changemood()">Click me!</button>
-
+    <ul v-if="numbers.length > 0 && numbers.length <10">
+      <li :key="number" v-for="number in numbers">{{ number }}</li>
+    </ul>
+    <button @click="addNew()">Add new random number</button>
   </div>
 </template>
 
 <script>
   export default {
     data() {
-      return {
-        happy :false
-      }
-      return {title: 0}
+      return {numbers: []}
     },
     methods: {
-      iAmClicked() {
-        this.title = this.title + 1;
-      },
-      startover(){
-        this.title = 0;
-      },
-      changemood(){
-        this.happy = !this.happy;
+      addNew() {
+        this.numbers.push(Math.round(Math.random() * 100));
       }
     }
   };
 </script>
+
